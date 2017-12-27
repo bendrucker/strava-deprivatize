@@ -1,0 +1,38 @@
+{
+  "name": "strava-deprivatize",
+  "bin": {
+    "strava-deprivatize": "./cli.js"
+  },
+  "version": "0.0.0",
+  "description": "CLI to switch private Strava activities to public",
+  "license": "MIT",
+  "repository": "bendrucker/strava-deprivatize",
+  "author": {
+    "name": "Ben Drucker",
+    "email": "bvdrucker@gmail.com",
+    "url": "bendrucker.me"
+  },
+  "scripts": {
+    "test": "standard"
+  },
+  "keywords": [
+    "strava",
+    "cli",
+    "activities",
+    "private"
+  ],
+  "devDependencies": {
+    "tape": "^4.0.0",
+    "standard": "^7.0.0"
+  },
+  "files": [
+    "*.js"
+  ],
+  "dependencies": {
+    "moment": "~2.20.1",
+    "sade": "~1.3.0",
+    "simple-get": "~2.7.0",
+    "strava-activities-stream": "~1.0.0",
+    "through2": "~2.0.3"
+  }
+}
