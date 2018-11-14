@@ -29,32 +29,32 @@ cli
       after: options.after,
       before: options.before
     })
-    .pipe(through.obj(function (activity, enc, callback) {
-      if (!activity.private) {
-        console.log(JSON.stringify({message: 'skip', id: activity.id}))
-        return callback()
-      }
-      callback(null, activity)
-    }))
-    .pipe(through.obj(function (activity, enc, callback) {
-      console.log(JSON.stringify({message: 'updating', id: activity.id}))
-      const request = {
-        method: 'PUT',
-        url: 'https://www.strava.com/api/v3/activities/' + activity.id,
-        headers: {
-          authorization: 'Bearer ' + options.token
-        },
-        body: {private: false},
-        json: true
-      }
+      .pipe(through.obj(function (activity, enc, callback) {
+        if (!activity.private) {
+          console.log(JSON.stringify({ message: 'skip', id: activity.id }))
+          return callback()
+        }
+        callback(null, activity)
+      }))
+      .pipe(through.obj(function (activity, enc, callback) {
+        console.log(JSON.stringify({ message: 'updating', id: activity.id }))
+        const request = {
+          method: 'PUT',
+          url: 'https://www.strava.com/api/v3/activities/' + activity.id,
+          headers: {
+            authorization: 'Bearer ' + options.token
+          },
+          body: { private: false },
+          json: true
+        }
 
-      get(request, function (err, res) {
-        if (err) return callback(err)
-        if (res.statusCode >= 299) return callback(new Error('Received ' + res.statusCode))
-        callback(null, JSON.stringify({message: 'updated', id: activity.id, private: false}) + '\n')
-      })
-    }))
-    .pipe(process.stdout)
+        get(request, function (err, res) {
+          if (err) return callback(err)
+          if (res.statusCode >= 299) return callback(new Error('Received ' + res.statusCode))
+          callback(null, JSON.stringify({ message: 'updated', id: activity.id, private: false }) + '\n')
+        })
+      }))
+      .pipe(process.stdout)
   })
 
 cli.parse(process.argv)
