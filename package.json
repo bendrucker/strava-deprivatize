@@ -30,7 +30,7 @@
   ],
   "dependencies": {
     "moment": "~2.22.2",
-    "sade": "~1.4.1",
+    "sade": "~1.5.0",
     "simple-get": "~3.0.3",
     "strava-activities-stream": "~1.0.0",
     "through2": "~3.0.0"
